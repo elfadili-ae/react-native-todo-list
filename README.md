@@ -1,5 +1,8 @@
 # Welcome to ToDo List app 👋
 
+![image](https://github.com/user-attachments/assets/0f92a3d3-149b-4295-ae21-711148e7e186)
+
+
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
 
 ## Get started
