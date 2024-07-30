@@ -8,7 +8,7 @@ import Task from '@/components/Task';
 const index = () => {
   const [taskDescription, setTaskDescription] = useState('');
   const [editID, setEditID] = useState('');
-  const tasks = useAppSelector(state => state.tasks);
+  const tasks = useAppSelector(state => state.tasks.tasks);
   const dispatch = useAppDispatch();
 
   const taskDescriptionChanged = (e:NativeSyntheticEvent<TextInputChangeEventData>) => {

@@ -1,12 +1,18 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { createSlice, nanoid, PayloadAction } from '@reduxjs/toolkit';
 import { Dispatch } from 'redux';
+
 type task = {
     id: string,
     description: string,
 }
 
-export const storeData = async (value: task[]): Promise<void> => {
+type initialStateType = {
+    total: number,
+    tasks: task[],
+};
+
+export const storeData = async (value: initialStateType): Promise<void> => {
     try {
         await AsyncStorage.setItem('tasks', JSON.stringify(value));
     } catch {
@@ -14,39 +20,44 @@ export const storeData = async (value: task[]): Promise<void> => {
     }
 }
 
-export const getData = async (): Promise<task[]> => {
+export const getData = async (): Promise<initialStateType> => {
     try {
         const data = await AsyncStorage.getItem('tasks');
-        return data !== null ? JSON.parse(data) : [];
+        return data !== null ? JSON.parse(data) : { total: 0, tasks: [] };
     } catch {
-        return [];
+        return { total: 0, tasks: [] };
     }
 }
 
-const initialState: task[] = [];
+const initialState: initialStateType = { total: 0, tasks: [] };
 
 const taskReducer = createSlice({
     name: "tasks",
     initialState: initialState,
     reducers: {
-        setTask: (state, action: PayloadAction<task[]>) => {
+        setTask: (state, action: PayloadAction<initialStateType>) => {
             return action.payload;
         },
         addTask: (state, action: PayloadAction<{ description: string }>) => {
-            state.push({
+            state.total += 1;
+            state.tasks.push({
                 id: nanoid(),
                 description: action.payload.description,
             });
         },
         editTask: (state, action: PayloadAction<{ id: string, description: string }>) => {
-            state.forEach((item: task) => {
+            state.tasks.forEach((item: task) => {
                 if (item.id === action.payload.id) {
                     item.description = action.payload.description;
                 }
             });
         },
         removeTask: (state, action: PayloadAction<{ id: string }>) => {
-            return state.filter((item: task) => item.id !== action.payload.id);
+            const newTasksState = state.tasks.filter((item: task) => item.id !== action.payload.id);
+            return {
+                ...state,
+                tasks: newTasksState,
+            }
         }
     }
 })

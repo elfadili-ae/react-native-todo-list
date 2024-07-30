@@ -1,4 +1,4 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { Pressable, Text, View } from 'react-native'
 import React from 'react'
 import Ionicons from '@expo/vector-icons/Ionicons';
 import tw from 'twrnc';
@@ -40,5 +40,3 @@ const Task = ({id, description, setTaskDescription, setEditID} : TaskProps) => {
 }
 
 export default Task
-
-const styles = StyleSheet.create({})
