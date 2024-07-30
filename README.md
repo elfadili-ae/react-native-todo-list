@@ -3,7 +3,18 @@
 ![image](https://github.com/user-attachments/assets/0f92a3d3-149b-4295-ae21-711148e7e186)
 
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Features
+
+- Task Management: Add, edit, and delete tasks effortlessly.
+- Expo: To streamline the development process and provide easy access to native APIs.
+- Persistent Storage: Tasks are saved locally using React Native Async Storage, ensuring they persist between app sessions.
+- Styling: Utilizes twrnc for a seamless TailwindCSS experience in React Native, allowing for expressive and maintainable styling.
+
+## Technologies Used
+
+- React Native: For building the mobile application.
+- twrnc: A simple, expressive API for TailwindCSS + React Native, providing powerful styling capabilities.
+- React Native Async Storage: For persistent local storage of tasks.
 
 ## Get started
 
