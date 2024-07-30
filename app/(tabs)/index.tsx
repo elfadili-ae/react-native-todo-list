@@ -25,11 +25,8 @@ const index = () => {
         dispatch(editTask({id: editID, description: taskDescription}));
       }
     }
+    setEditID('');
     setTaskDescription('');
-  }
-
-  const handleEdit = (id: string) => {
-    setEditID(id);
   }
 
   useEffect(() => {
@@ -40,7 +37,10 @@ const index = () => {
     <View style={tw`flex-1 py-2 bg-white`}>
       <Text style={tw`text-3xl text-center border-b-2 mb-8 px-3`}>To Do List</Text>
       <View style={tw`flex-row justify-between items-center gap-2 w-full px-3 mb-6`}>
-      <TextInput onChange={taskDescriptionChanged} value={taskDescription} placeholder='I will do ...' style={tw`p-2 bg-gray-200 w-full rounded-md`} />
+      <TextInput
+        onChange={taskDescriptionChanged}
+        value={taskDescription} placeholder='I will do ...'
+        style={tw`p-2 bg-gray-200 w-full rounded-md`} />
       <Pressable
         style={tw`p-2 bg-gray-600 rounded-md`}
         onPress={handleAddSave}>
